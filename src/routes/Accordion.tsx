@@ -82,9 +82,10 @@ const Accordion: React.FC = () => {
 
     setSelected(+index);
   };
+
   return (
     <div className='flex flex-col justify-center items-center gap-4'>
-      <h3 className='text-2xl font-bold'>Accordion</h3>
+      <h2 className='heading-2'>Accordion</h2>
 
       <div className='flex flex-col w-[700px] gap-5' onClick={handleClick}>
         {accordionContent.map((accordionItem, accordionItemId) => {
