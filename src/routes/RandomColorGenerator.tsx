@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const RandomColorGenerator: React.FC = () => {
-  const [typeOfColor, setTypeOfColor] = useState<string>("hex");
   const [color, setColor] = useState<string | undefined>();
 
   const generateRandomHexColor = (): string => {
@@ -29,26 +28,46 @@ const RandomColorGenerator: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <h2 className='heading-2 mb-5'>Random Color Generator</h2>
+    <main
+      className='flex flex-col justify-center items-center'
+      role='main'
+      aria-label='Random Color Generator'
+    >
+      <h1 className='heading-2 mb-5'>Random Color Generator</h1>
 
-      <div className='flex gap-4 '>
-        <button className='btn-primary' onClick={() => handleClick("hex")}>
-          Hex Color
+      <div className='flex gap-4' role='group' aria-label='Color format selection'>
+        <button
+          className='btn-primary'
+          onClick={() => handleClick("hex")}
+          aria-label='Generate Hex Color'
+        >
+          Generate Hex Color
         </button>
 
-        <button className='btn-primary' onClick={() => handleClick("rgb")}>
-          RGB Color
+        <button
+          className='btn-primary'
+          onClick={() => handleClick("rgb")}
+          aria-label='Generate RGB Color'
+        >
+          Generate RGB Color
         </button>
       </div>
 
       <div
         className='w-[300px] h-[300px] border-2 border-solid border-white mt-5'
         style={{ backgroundColor: color }}
+        role='region'
+        aria-label={`Color preview: ${color || "No color selected"}`}
       ></div>
 
-      {color && <p className='mt-4 text-xl'>Color: {color}</p>}
-    </div>
+      {color && (
+        <div className='mt-4 text-xl' aria-live='polite'>
+          <span className='sr-only'>Current color value:</span>
+          <p>Color: {color}</p>
+        </div>
+      )}
+    </main>
   );
 };
+
 export default RandomColorGenerator;
