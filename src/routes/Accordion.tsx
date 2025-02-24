@@ -55,7 +55,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
         aria-expanded={isOpen}
         aria-controls={`accordion-content-${accordionItemId}`}
       >
-        <h4 className='text-xl font-semibold pb-2'>{accordionItem.question}</h4>
+        <h3 className='text-xl font-semibold pb-2'>{accordionItem.question}</h3>
         <span>{isOpen ? "-" : "+"}</span>
       </button>
 
