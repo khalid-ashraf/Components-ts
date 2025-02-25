@@ -3,29 +3,6 @@ import { useState, useCallback, memo } from "react";
 // Add type for color format
 type ColorFormat = "hex" | "rgb";
 
-// Memoized color button component
-const ColorButton = memo(
-  ({
-    format,
-    onClick,
-    label,
-  }: {
-    format: ColorFormat;
-    onClick: (format: ColorFormat) => void;
-    label: string;
-  }) => (
-    <button
-      className='btn-primary'
-      onClick={() => onClick(format)}
-      aria-label={`Generate ${label}`}
-    >
-      Generate {label}
-    </button>
-  )
-);
-
-ColorButton.displayName = "ColorButton";
-
 const RandomColorGenerator: React.FC = () => {
   const [type, setType] = useState<ColorFormat>("hex");
   const [color, setColor] = useState<string>("");
@@ -87,3 +64,26 @@ const RandomColorGenerator: React.FC = () => {
 };
 
 export default memo(RandomColorGenerator);
+
+// Memoized color button component
+const ColorButton = memo(
+  ({
+    format,
+    onClick,
+    label,
+  }: {
+    format: ColorFormat;
+    onClick: (format: ColorFormat) => void;
+    label: string;
+  }) => (
+    <button
+      className='btn-primary'
+      onClick={() => onClick(format)}
+      aria-label={`Generate ${label}`}
+    >
+      Generate {label}
+    </button>
+  )
+);
+
+ColorButton.displayName = "ColorButton";
