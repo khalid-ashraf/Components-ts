@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo, useCallback } from "react";
 
 type AccordionContentType = {
   question: string;
@@ -11,6 +11,12 @@ type ButtonElement = {
     index: string;
   };
 } & HTMLButtonElement;
+
+type AccordionItemProps = {
+  accordionItem: AccordionContentType;
+  accordionItemId: number;
+  isOpen: boolean;
+};
 
 const accordionContent: AccordionContentType[] = [
   {
@@ -35,64 +41,34 @@ const accordionContent: AccordionContentType[] = [
   },
 ];
 
-type AccordionItemProps = {
-  accordionItem: AccordionContentType;
-  accordionItemId: number;
-  isOpen: boolean;
-};
-
-const AccordionItem: React.FC<AccordionItemProps> = ({
-  accordionItem,
-  accordionItemId,
-  isOpen,
-}) => {
-  return (
-    <div className='bg-[#5e503f] p-4' key={accordionItemId}>
-      <button
-        className='w-[100%] flex justify-between'
-        disabled={isOpen}
-        data-index={accordionItemId}
-        aria-expanded={isOpen}
-        aria-controls={`accordion-content-${accordionItemId}`}
-      >
-        <h3 className='text-xl font-semibold pb-2'>{accordionItem.question}</h3>
-        <span>{isOpen ? "-" : "+"}</span>
-      </button>
-
-      {isOpen && <p>{accordionItem.answer}</p>}
-    </div>
-  );
-};
-
 const Accordion: React.FC = () => {
   const [selected, setSelected] = useState<number>(0);
 
   // Using event delegation so that there are not multiple instances of handle click event listener.
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const element = e.target as HTMLElement;
-
+  const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     // element.closest('button') helps us find the closest ancestor of the clicked item which has the attribute we defined; in this case, is button.
-    const button = element.closest("button") as ButtonElement | null;
+
+    const button = (e.target as HTMLElement).closest("button") as ButtonElement | null;
 
     // element.closest can return null if the no ancestor is a button.
-    if (!button) return;
+    if (!button?.dataset.index) return;
 
-    const index = button.getAttribute("data-index");
-    if (!index) return;
+    const index = button.dataset.index;
 
     setSelected(+index);
-  };
+  }, []);
 
   return (
     <div className='flex flex-col justify-center items-center gap-4'>
       <h2 className='heading-2'>Accordion</h2>
 
       <div className='flex flex-col w-[700px] gap-5' onClick={handleClick}>
-        {accordionContent.map((accordionItem, accordionItemId) => {
+        {accordionContent?.map((accordionItem, accordionItemId) => {
           const isOpen = accordionItemId === selected;
 
           return (
             <AccordionItem
+              key={accordionItemId}
               accordionItem={accordionItem}
               accordionItemId={accordionItemId}
               isOpen={isOpen}
@@ -103,4 +79,37 @@ const Accordion: React.FC = () => {
     </div>
   );
 };
+
 export default Accordion;
+
+// Accordion Item sub component
+const AccordionItem = memo<AccordionItemProps>(({ accordionItem, accordionItemId, isOpen }) => {
+  return (
+    <div
+      className='bg-[#5e503f] p-4'
+      role='region'
+      aria-labelledby={`accordion-header-${accordionItemId}`}
+    >
+      <button
+        className='w-[100%] flex justify-between'
+        disabled={isOpen}
+        data-index={accordionItemId}
+        aria-expanded={isOpen}
+        aria-controls={`accordion-content-${accordionItemId}`}
+        id={`accordion-header-${accordionItemId}`}
+      >
+        <h3 className='text-xl font-semibold pb-2'>{accordionItem.question}</h3>
+        <span aria-hidden='true'>{isOpen ? "-" : "+"}</span>
+      </button>
+
+      {isOpen && (
+        <div id={`accordion-content-${accordionItemId}`}>
+          <p>{accordionItem.answer}</p>
+        </div>
+      )}
+    </div>
+  );
+});
+
+// When using React.memo, React Dev Tools will not be able to see the component name. By Doing this, you can see the component name in React Dev Tools.
+AccordionItem.displayName = "AccordionItem";
