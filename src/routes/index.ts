@@ -1,9 +1,9 @@
 import { lazy } from "react";
 
-import Home from "./Home";
-
+const Home = lazy(() => import("./Home"));
 const Accordion = lazy(() => import("./Accordion"));
 const LayoutRoute = lazy(() => import("./LayoutRoute"));
 const RandomColorGenerator = lazy(() => import("./RandomColorGenerator"));
+const StarRating = lazy(() => import("./StarRating"));
 
-export { Accordion, Home, LayoutRoute, RandomColorGenerator };
+export { Accordion, Home, LayoutRoute, RandomColorGenerator, StarRating };

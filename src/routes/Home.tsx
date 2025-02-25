@@ -15,8 +15,13 @@ const Home: React.FC = () => {
         <Link to='/accordion'>
           <button className='btn-link'>Accordion</button>
         </Link>
+
         <Link to='/random-color-generator'>
           <button className='btn-link'>Random Color Generator</button>
+        </Link>
+
+        <Link to='/star-rating'>
+          <button className='btn-link'>Star Rating</button>
         </Link>
       </div>
     </div>

@@ -1,20 +1,31 @@
 import { Suspense } from "react";
-import { Route, Routes } from "react-router";
+import { Outlet, Route, Routes } from "react-router";
 
 import { Accordion, Home, LayoutRoute, RandomColorGenerator } from "./routes";
+import StarRating from "./routes/StarRating";
 
 const App = () => {
   return (
-    <Suspense fallback={<h1 className='font-bold text-2xl'>Loading...</h1>}>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route element={<LayoutRoute />}>
-          <Route path='/accordion' element={<Accordion />} />
-          <Route path='/random-color-generator' element={<RandomColorGenerator />} />
-        </Route>
-      </Routes>
-    </Suspense>
+    <Routes>
+      <Route path='/' element={<Home />} />
+
+      <Route
+        element={
+          <Suspense fallback={<Loading />}>
+            <LayoutRoute />
+          </Suspense>
+        }
+      >
+        <Route path='/accordion' element={<Accordion />} />
+        <Route path='/random-color-generator' element={<RandomColorGenerator />} />
+        <Route path='/star-rating' element={<StarRating />} />
+      </Route>
+    </Routes>
   );
 };
 
 export default App;
+
+const Loading = () => {
+  return <h1 className='text-center font-bold text-2xl'>Loading...</h1>;
+};
