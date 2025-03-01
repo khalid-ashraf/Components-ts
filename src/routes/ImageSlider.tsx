@@ -79,7 +79,7 @@ const Loading = () => {
   return <h3 className='text-xl font-semibold'>Loading...</h3>;
 };
 
-// Slider component.
+// Slider sub-component.
 const Slider: React.FC<SliderProps> = ({ images, currentImage, setCurrentImage }) => {
   if (!images || images === null || images.length === 0)
     return <h3 className='text-xl font-semibold'>No Images</h3>;
@@ -122,6 +122,7 @@ const Slider: React.FC<SliderProps> = ({ images, currentImage, setCurrentImage }
           <i className='fa-solid fa-arrow-right' />
         </button>
       </div>
+
       <CircleIndicators
         images={images}
         currentImage={currentImage}
@@ -131,6 +132,7 @@ const Slider: React.FC<SliderProps> = ({ images, currentImage, setCurrentImage }
   );
 };
 
+// Circle Indicator Subcomponent
 const CircleIndicators: React.FC<CircleIndicatorProps> = ({
   images,
   currentImage,
