@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 
+import ButtonLink from "../components/ButtonLink";
+
 const Home: React.FC = () => {
   return (
     <div className='text-center p-8 flex flex-col items-center justify-center'>
@@ -11,18 +13,14 @@ const Home: React.FC = () => {
       <p>Feel free to explore the components and use them to study or use in your projects.</p>
       <p>Check out the documentation for detailed usage instructions and examples.</p>
 
-      <div className='flex gap-2 flex-wrap max-w-[500px] mt-5'>
-        <Link to='/accordion'>
-          <button className='btn-link'>Accordion</button>
-        </Link>
+      <div className='flex gap-2 flex-wrap max-w-[700px] mt-5'>
+        <ButtonLink link='/accordion'>Accordion</ButtonLink>
 
-        <Link to='/random-color-generator'>
-          <button className='btn-link'>Random Color Generator</button>
-        </Link>
+        <ButtonLink link='/image-slider'>Image Slider</ButtonLink>
 
-        <Link to='/star-rating'>
-          <button className='btn-link'>Star Rating</button>
-        </Link>
+        <ButtonLink link='/random-color-generator'>Random Color Generator</ButtonLink>
+
+        <ButtonLink link='/star-rating'>Star Rating</ButtonLink>
       </div>
     </div>
   );

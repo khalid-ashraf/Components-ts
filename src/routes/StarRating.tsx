@@ -31,12 +31,12 @@ const StarRating = () => {
           const starValue = id + 1;
 
           return (
-            <label key={id} className='relative p-2 cursor-pointer'>
+            <label key={id} className=' p-1 cursor-pointer'>
               <input
                 type='radio'
                 name='rating'
                 value={starValue}
-                className='sr-only' // Hide input but keep it accessible
+                className='opacity-0 border-0 h-[1px] w-[1px] overflow-hidden p-0 m-0' // Hide input but keep it accessible
                 defaultChecked={isSelected}
                 data-id={id}
                 aria-label={`${starValue} star${starValue === 1 ? "" : "s"}`}
