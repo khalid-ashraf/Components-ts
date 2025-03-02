@@ -1,11 +1,10 @@
-import { Suspense } from "react";
-import { Route, Routes } from "react-router";
-import { createBrowserRouter, BrowserRouter, RouterProvider } from "react-router";
+import { JSX, Suspense } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router";
 
 import { Accordion, Home, ImageSlider, LayoutRoute, RandomColorGenerator } from "./routes";
 import StarRating from "./routes/StarRating";
 
-const Loading = () => {
+const Loading = (): JSX.Element => {
   return <h1 className='text-center font-bold text-2xl'>Loading...</h1>;
 };
 

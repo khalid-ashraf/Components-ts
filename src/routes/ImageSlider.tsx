@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useFetch from "../hooks/useFetch";
 
 type TImage = {
   id: string;
@@ -19,55 +20,33 @@ type SliderProps = {
   setCurrentImage: React.Dispatch<React.SetStateAction<number>>;
 } & Omit<CircleIndicatorProps, "handleCircleClick">;
 
+const URL = "https://picsum.photos/v2/list?page=1&limit=";
+const limit = 5;
+
 const ImageSlider: React.FC = () => {
-  const [images, setImages] = useState<TImage[] | null>(null);
+  const { data, isLoading } = useFetch<TImage[]>(URL, limit);
   const [currentImage, setCurrentImage] = useState(0);
-  const [loading, setLoading] = useState(false);
-
-  // UseEffect to load pictures.
-  useEffect(() => {
-    const url = "https://picsum.photos/v2/list?page=1&limit=";
-    const limit = 5;
-
-    const fetchImages = async () => {
-      setLoading(true);
-
-      try {
-        const response = await fetch(`${url}${limit}`);
-        if (!response.ok) throw new Error("Network error");
-        const data = await response.json();
-
-        setImages(data);
-      } catch (err: unknown) {
-        if (err instanceof Error && err.name !== "AbortError") console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchImages();
-  }, []);
 
   // useEffect to run the interval based on the images loading and if the user manually changes clearInterval.
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => {
-        return images && prev === images.length - 1 ? 0 : prev + 1;
+        return data && prev === data.length - 1 ? 0 : prev + 1;
       });
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [images, currentImage]);
+  }, [data, currentImage]);
 
   return (
     <div className='flex flex-col gap-10 items-center'>
       <h2 className='heading-2'>Image Slider</h2>
 
       {/* Check for loading state, if the images are loaded display the image slider */}
-      {loading ? (
+      {isLoading ? (
         <Loading />
       ) : (
-        <Slider images={images} currentImage={currentImage} setCurrentImage={setCurrentImage} />
+        <Slider images={data} currentImage={currentImage} setCurrentImage={setCurrentImage} />
       )}
     </div>
   );
