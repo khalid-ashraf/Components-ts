@@ -33,7 +33,7 @@ const useFetch = <TData>(url: string): ReturnType<TData> => {
     };
 
     fetchItems();
-  }, []);
+  }, [url]);
 
   return { data, setData, isLoading };
 };
