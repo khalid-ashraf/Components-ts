@@ -8,6 +8,7 @@ import {
   LayoutRoute,
   LoadMore,
   RandomColorGenerator,
+  RecursiveComponent,
 } from "./routes";
 import StarRating from "./routes/StarRating";
 
@@ -21,11 +22,7 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    element: (
-      <Suspense fallback={<Loading />}>
-        <LayoutRoute />
-      </Suspense>
-    ),
+    element: <LayoutRoute />,
     children: [
       {
         path: "/accordion",
@@ -42,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/random-color-generator",
         element: <RandomColorGenerator />,
+      },
+      {
+        path: "/recursive-component",
+        element: <RecursiveComponent />,
       },
       {
         path: "/star-rating",

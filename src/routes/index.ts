@@ -1,11 +1,23 @@
-import { lazy } from "react";
+import withLazyLoading from "../components/WithLazyLoading";
 
-const Accordion = lazy(() => import("./Accordion"));
-const Home = lazy(() => import("./Home"));
-const ImageSlider = lazy(() => import("./ImageSlider"));
-const LayoutRoute = lazy(() => import("./LayoutRoute"));
-const LoadMore = lazy(() => import("./LoadMore"));
-const RandomColorGenerator = lazy(() => import("./RandomColorGenerator"));
-const StarRating = lazy(() => import("./StarRating"));
+import LayoutRoute from "./LayoutRoute";
 
-export { Accordion, Home, ImageSlider, LayoutRoute, LoadMore, RandomColorGenerator, StarRating };
+const Accordion = withLazyLoading(() => import("./Accordion"));
+const Home = withLazyLoading(() => import("./Home"));
+const ImageSlider = withLazyLoading(() => import("./ImageSlider"));
+
+const LoadMore = withLazyLoading(() => import("./LoadMore"));
+const RandomColorGenerator = withLazyLoading(() => import("./RandomColorGenerator"));
+const RecursiveComponent = withLazyLoading(() => import("./RecursiveComponent"));
+const StarRating = withLazyLoading(() => import("./StarRating"));
+
+export {
+  Accordion,
+  Home,
+  ImageSlider,
+  LayoutRoute,
+  LoadMore,
+  RandomColorGenerator,
+  RecursiveComponent,
+  StarRating,
+};

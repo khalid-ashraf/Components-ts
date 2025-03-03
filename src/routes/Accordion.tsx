@@ -59,7 +59,7 @@ const Accordion: React.FC = () => {
   }, []);
 
   return (
-    <div className='flex flex-col justify-center items-center gap-4'>
+    <div className='div-center'>
       <h2 className='heading-2'>Accordion</h2>
 
       <div className='flex flex-col w-[700px] gap-5' onClick={handleClick}>

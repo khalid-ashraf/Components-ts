@@ -30,7 +30,7 @@ const LoadMore = () => {
   };
 
   return (
-    <section aria-label='Product List' role='region' aria-live='polite'>
+    <section aria-label='Product List' role='region' aria-live='polite' className='text-center'>
       {isLoading ? (
         <p role='status' aria-live='assertive'>
           Loading...
