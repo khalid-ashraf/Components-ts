@@ -20,11 +20,11 @@ type SliderProps = {
   setCurrentImage: React.Dispatch<React.SetStateAction<number>>;
 } & Omit<CircleIndicatorProps, "handleCircleClick">;
 
-const URL = "https://picsum.photos/v2/list?page=1&limit=";
 const limit = 5;
+const URL = `https://picsum.photos/v2/list?page=1&limit=${limit}`;
 
 const ImageSlider: React.FC = () => {
-  const { data, isLoading } = useFetch<TImage[]>(URL, limit);
+  const { data, isLoading } = useFetch<TImage[]>(URL);
   const [currentImage, setCurrentImage] = useState(0);
 
   // useEffect to run the interval based on the images loading and if the user manually changes clearInterval.

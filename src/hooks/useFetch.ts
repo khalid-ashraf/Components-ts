@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 
-const useFetch = <TData>(
-  url: string,
-  limit: number
-): { data: TData | null; isLoading: boolean } => {
+interface ReturnType<TData> {
+  data: TData | null;
+  setData: React.Dispatch<React.SetStateAction<TData | null>>;
+  isLoading: boolean;
+}
+
+const useFetch = <TData>(url: string): ReturnType<TData> => {
   const [data, setData] = useState<TData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -12,7 +15,7 @@ const useFetch = <TData>(
       setIsLoading(true);
 
       try {
-        const response = await fetch(`${url}${limit}`);
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -32,6 +35,6 @@ const useFetch = <TData>(
     fetchItems();
   }, []);
 
-  return { data, isLoading };
+  return { data, setData, isLoading };
 };
 export default useFetch;

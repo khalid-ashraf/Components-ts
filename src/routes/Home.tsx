@@ -18,6 +18,8 @@ const Home: React.FC = () => {
 
         <ButtonLink link='/image-slider'>Image Slider</ButtonLink>
 
+        <ButtonLink link='/load-more'>Load More</ButtonLink>
+
         <ButtonLink link='/random-color-generator'>Random Color Generator</ButtonLink>
 
         <ButtonLink link='/star-rating'>Star Rating</ButtonLink>

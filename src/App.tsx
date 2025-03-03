@@ -1,7 +1,14 @@
 import { JSX, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
-import { Accordion, Home, ImageSlider, LayoutRoute, RandomColorGenerator } from "./routes";
+import {
+  Accordion,
+  Home,
+  ImageSlider,
+  LayoutRoute,
+  LoadMore,
+  RandomColorGenerator,
+} from "./routes";
 import StarRating from "./routes/StarRating";
 
 const Loading = (): JSX.Element => {
@@ -25,16 +32,20 @@ const router = createBrowserRouter([
         element: <Accordion />,
       },
       {
+        path: "/image-slider",
+        element: <ImageSlider />,
+      },
+      {
+        path: "/load-more",
+        element: <LoadMore />,
+      },
+      {
         path: "/random-color-generator",
         element: <RandomColorGenerator />,
       },
       {
         path: "/star-rating",
         element: <StarRating />,
-      },
-      {
-        path: "/image-slider",
-        element: <ImageSlider />,
       },
     ],
   },
