@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 
-const folders = [
+interface FolderType {
+  name: string;
+  folders?: FolderType[];
+}
+
+const folders: FolderType[] = [
   {
     name: "Movies",
     folders: [
@@ -28,6 +33,51 @@ interface FolderProps {
   };
 }
 
+interface FolderButtonProps {
+  isExpanded: boolean;
+  hasChildren: boolean | undefined;
+  name: string;
+  onClick: () => void;
+}
+
+const FolderButton: React.FC<FolderButtonProps> = memo(
+  ({ isExpanded, hasChildren, name, onClick }) => (
+    <button
+      onClick={onClick}
+      className='flex items-center gap-2'
+      aria-label={`${hasChildren ? (isExpanded ? "Collapse" : "Expand") : ""} ${name}`}
+    >
+      <span aria-hidden='true'>{hasChildren ? (isExpanded ? "-" : "+") : "."}</span> {name}
+    </button>
+  )
+);
+
+const Folder = ({ folder }: FolderProps) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const hasChildren = folder.folders && folder.folders.length > 0;
+
+  const handleToggle = useCallback(() => {
+    setIsExpanded((prev) => !prev);
+  }, []);
+
+  return (
+    <li role='treeitem' aria-expanded={hasChildren ? isExpanded : undefined}>
+      <FolderButton
+        isExpanded={isExpanded}
+        hasChildren={hasChildren}
+        name={folder.name}
+        onClick={handleToggle}
+      />
+
+      {isExpanded && hasChildren && (
+        <ul className='pl-6' role='group' aria-label={`${folder.name} contents`}>
+          {folder.folders?.map((folder) => <Folder folder={folder} key={folder.name} />)}
+        </ul>
+      )}
+    </li>
+  );
+};
+
 const RecursiveComponent = () => {
   return (
     <nav className='div-center' aria-label='Folder structure'>
@@ -41,22 +91,3 @@ const RecursiveComponent = () => {
 };
 
 export default RecursiveComponent;
-
-const Folder = ({ folder }: FolderProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const hasChildren = folder.folders && folder.folders.length > 0;
-
-  return (
-    <li role='treeitem' aria-expanded={hasChildren ? isExpanded : undefined}>
-      <button onClick={() => setIsExpanded((prev) => !prev)} className='flex items-center gap-2 '>
-        <span aria-hidden='true'>{hasChildren ? (isExpanded ? "-" : "+") : "."}</span> {folder.name}
-      </button>
-
-      {isExpanded && hasChildren && (
-        <ul className='pl-6' role='group' aria-label={`${folder.name} contents`}>
-          {folder.folders?.map((folder) => <Folder folder={folder} key={folder.name} />)}
-        </ul>
-      )}
-    </li>
-  );
-};

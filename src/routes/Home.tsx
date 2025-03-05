@@ -13,10 +13,12 @@ const Home: React.FC = () => {
       <p>Feel free to explore the components and use them to study or use in your projects.</p>
       <p>Check out the documentation for detailed usage instructions and examples.</p>
 
-      <div className='flex gap-2 flex-wrap max-w-[700px] mt-5'>
+      <div className='flex justify-center items-center gap-2 flex-wrap max-w-[700px] mt-5'>
         <ButtonLink link='/accordion'>Accordion</ButtonLink>
 
         <ButtonLink link='/image-slider'>Image Slider</ButtonLink>
+
+        <ButtonLink link='/infinite-scroll'>Infinite Scroll</ButtonLink>
 
         <ButtonLink link='/load-more'>Load More</ButtonLink>
 

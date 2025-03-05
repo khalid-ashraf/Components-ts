@@ -5,6 +5,7 @@ import {
   Accordion,
   Home,
   ImageSlider,
+  InfiniteScroll,
   LayoutRoute,
   LoadMore,
   RandomColorGenerator,
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/image-slider",
         element: <ImageSlider />,
+      },
+      {
+        path: "/infinite-scroll",
+        element: <InfiniteScroll />,
       },
       {
         path: "/load-more",

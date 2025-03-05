@@ -37,4 +37,5 @@ const useFetch = <TData>(url: string): ReturnType<TData> => {
 
   return { data, setData, isLoading };
 };
+
 export default useFetch;

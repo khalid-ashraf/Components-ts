@@ -1,4 +1,4 @@
-import { useState, memo, useCallback } from "react";
+import { useState, memo, useCallback, JSX } from "react";
 
 type AccordionContentType = {
   question: string;
@@ -83,33 +83,35 @@ const Accordion: React.FC = () => {
 export default Accordion;
 
 // Accordion Item sub component
-const AccordionItem = memo<AccordionItemProps>(({ accordionItem, accordionItemId, isOpen }) => {
-  return (
-    <div
-      className='bg-[#5e503f] p-4'
-      role='region'
-      aria-labelledby={`accordion-header-${accordionItemId}`}
-    >
-      <button
-        className='w-[100%] flex justify-between'
-        disabled={isOpen}
-        data-index={accordionItemId}
-        aria-expanded={isOpen}
-        aria-controls={`accordion-content-${accordionItemId}`}
-        id={`accordion-header-${accordionItemId}`}
+const AccordionItem = memo(
+  ({ accordionItem, accordionItemId, isOpen }: AccordionItemProps): JSX.Element => {
+    return (
+      <div
+        className='bg-[#5e503f] p-4'
+        role='region'
+        aria-labelledby={`accordion-header-${accordionItemId}`}
       >
-        <h3 className='text-xl font-semibold pb-2'>{accordionItem.question}</h3>
-        <span aria-hidden='true'>{isOpen ? "-" : "+"}</span>
-      </button>
+        <button
+          className='w-[100%] flex justify-between'
+          disabled={isOpen}
+          data-index={accordionItemId}
+          aria-expanded={isOpen}
+          aria-controls={`accordion-content-${accordionItemId}`}
+          id={`accordion-header-${accordionItemId}`}
+        >
+          <h3 className='text-xl font-semibold pb-2'>{accordionItem.question}</h3>
+          <span aria-hidden='true'>{isOpen ? "-" : "+"}</span>
+        </button>
 
-      {isOpen && (
-        <div id={`accordion-content-${accordionItemId}`}>
-          <p>{accordionItem.answer}</p>
-        </div>
-      )}
-    </div>
-  );
-});
+        {isOpen && (
+          <div id={`accordion-content-${accordionItemId}`}>
+            <p>{accordionItem.answer}</p>
+          </div>
+        )}
+      </div>
+    );
+  }
+);
 
 // When using React.memo, React Dev Tools will not be able to see the component name. By Doing this, you can see the component name in React Dev Tools.
 AccordionItem.displayName = "AccordionItem";

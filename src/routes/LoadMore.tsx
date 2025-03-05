@@ -10,18 +10,16 @@ interface FetchData {
   products: Product[];
 }
 
-const LoadMore = () => {
+const LoadMore: React.FC = () => {
   const URL = "https://dummyjson.com/products?limit=10&skip=";
 
   const [loadMore, setLoadMore] = useState(0);
 
   const { data, setData, isLoading } = useFetch<FetchData>(`${URL}${loadMore}`);
 
-  const handleLoadMore = async () => {
+  const handleLoadMore = async (): Promise<void> => {
     const response = await fetch(`${URL}${loadMore + 10}`);
     const responseData = await response.json();
-
-    console.log(responseData);
 
     setData((prev) =>
       prev ? { ...prev, products: [...prev.products, ...responseData.products] } : responseData
