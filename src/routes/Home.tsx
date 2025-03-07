@@ -22,6 +22,8 @@ const Home: React.FC = () => {
 
         <ButtonLink link='/load-more'>Load More</ButtonLink>
 
+        <ButtonLink link='/modal'>Modal</ButtonLink>
+
         <ButtonLink link='/password-generator'>Password Generator</ButtonLink>
 
         <ButtonLink link='/random-color-generator'>Random Color Generator</ButtonLink>
@@ -29,6 +31,8 @@ const Home: React.FC = () => {
         <ButtonLink link='/recursive-component'>Recursive Component</ButtonLink>
 
         <ButtonLink link='/star-rating'>Star Rating</ButtonLink>
+
+        <ButtonLink link='/scroll-indicator'>Scroll Indicator</ButtonLink>
 
         <ButtonLink link='/tabs'>Tabs</ButtonLink>
       </div>

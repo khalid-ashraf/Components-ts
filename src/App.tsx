@@ -8,9 +8,11 @@ import {
   InfiniteScroll,
   LayoutRoute,
   LoadMore,
+  Modal,
   PasswordGenerator,
   RandomColorGenerator,
   RecursiveComponent,
+  ScrollIndicator,
   Tabs,
 } from "./routes";
 import StarRating from "./routes/StarRating";
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
         element: <LoadMore />,
       },
       {
+        path: "/modal",
+        element: <Modal />,
+      },
+      {
         path: "/password-generator",
         element: <PasswordGenerator />,
       },
@@ -58,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/star-rating",
         element: <StarRating />,
+      },
+      {
+        path: "/scroll-indicator",
+        element: <ScrollIndicator />,
       },
       {
         path: "/tabs",
