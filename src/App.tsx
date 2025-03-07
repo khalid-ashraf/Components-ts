@@ -11,6 +11,7 @@ import {
   PasswordGenerator,
   RandomColorGenerator,
   RecursiveComponent,
+  Tabs,
 } from "./routes";
 import StarRating from "./routes/StarRating";
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/star-rating",
         element: <StarRating />,
+      },
+      {
+        path: "/tabs",
+        element: <Tabs />,
       },
     ],
   },

@@ -29,6 +29,8 @@ const Home: React.FC = () => {
         <ButtonLink link='/recursive-component'>Recursive Component</ButtonLink>
 
         <ButtonLink link='/star-rating'>Star Rating</ButtonLink>
+
+        <ButtonLink link='/tabs'>Tabs</ButtonLink>
       </div>
     </div>
   );

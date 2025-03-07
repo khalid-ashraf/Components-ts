@@ -11,6 +11,7 @@ const PasswordGenerator = withLazyLoading(() => import("./PasswordGenerator.tsx"
 const RandomColorGenerator = withLazyLoading(() => import("./RandomColorGenerator"));
 const RecursiveComponent = withLazyLoading(() => import("./RecursiveComponent"));
 const StarRating = withLazyLoading(() => import("./StarRating"));
+const Tabs = withLazyLoading(() => import("./Tabs.tsx"));
 
 export {
   Accordion,
@@ -23,4 +24,5 @@ export {
   RandomColorGenerator,
   RecursiveComponent,
   StarRating,
+  Tabs,
 };
