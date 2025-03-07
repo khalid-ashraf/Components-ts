@@ -8,6 +8,7 @@ import {
   InfiniteScroll,
   LayoutRoute,
   LoadMore,
+  PasswordGenerator,
   RandomColorGenerator,
   RecursiveComponent,
 } from "./routes";
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/load-more",
         element: <LoadMore />,
+      },
+      {
+        path: "/password-generator",
+        element: <PasswordGenerator />,
       },
       {
         path: "/random-color-generator",

@@ -22,6 +22,8 @@ const Home: React.FC = () => {
 
         <ButtonLink link='/load-more'>Load More</ButtonLink>
 
+        <ButtonLink link='/password-generator'>Password Generator</ButtonLink>
+
         <ButtonLink link='/random-color-generator'>Random Color Generator</ButtonLink>
 
         <ButtonLink link='/recursive-component'>Recursive Component</ButtonLink>

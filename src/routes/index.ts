@@ -7,6 +7,7 @@ const Home = withLazyLoading(() => import("./Home"));
 const ImageSlider = withLazyLoading(() => import("./ImageSlider"));
 const InfiniteScroll = withLazyLoading(() => import("./InfiniteScroll"));
 const LoadMore = withLazyLoading(() => import("./LoadMore"));
+const PasswordGenerator = withLazyLoading(() => import("./PasswordGenerator.tsx"));
 const RandomColorGenerator = withLazyLoading(() => import("./RandomColorGenerator"));
 const RecursiveComponent = withLazyLoading(() => import("./RecursiveComponent"));
 const StarRating = withLazyLoading(() => import("./StarRating"));
@@ -18,6 +19,7 @@ export {
   InfiniteScroll,
   LayoutRoute,
   LoadMore,
+  PasswordGenerator,
   RandomColorGenerator,
   RecursiveComponent,
   StarRating,
